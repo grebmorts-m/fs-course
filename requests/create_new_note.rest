@@ -1,7 +1,0 @@
-POST http://localhost:3001/api/notes
-Content-Type: application/json
-
-{
-    "content": "Höpönlöpö, se on testi vaan",
-    "important": false
-}

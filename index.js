@@ -3,6 +3,7 @@ const express = require('express')
 const app = express()
 const cors = require('cors')
 const Note = require('./models/note')
+const { default: mongoose } = require('mongoose')
 
 app.use(express.static('dist'))
 app.use(cors())
@@ -71,7 +72,8 @@ app.put('/api/notes/:id', (req, res, next) => {
         important: body.important
     }
 
-    Note.findByIdAndUpdate(req.params.id, note, {new: true})
+    Note.findByIdAndUpdate(req.params.id, 
+    {new: true, runValidators: true, context: 'query'})
     .then(updatedNote => {
         res.json(updatedNote)
     })
@@ -83,6 +85,8 @@ const errorHandler = (error, req, res, next) => {
 
     if (error.name === 'CastError') {
         return res.status(400).send({error: "malformatted id"})
+    } else if (error.name === 'ValidationError') {
+        return res.status(400).json({error: error.message})
     }
 
     next(error)

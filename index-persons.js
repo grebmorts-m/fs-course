@@ -14,24 +14,24 @@ app.use(express.json())
 
 let persons = [
     {
-      id: 1,
-      name: "Arto Hellas",
-      number: "040-1234567"
+        id: 1,
+        name: 'Arto Hellas',
+        number: '040-1234567'
     },
     {
-      id: 2,
-      name: "Ada Lovelace",
-      number: "39-44-532523"
+        id: 2,
+        name: 'Ada Lovelace',
+        number: '39-44-532523'
     },
     {
-      id: 3,
-      name: "Dan Abramov",
-      number: "12-43-545678"
+        id: 3,
+        name: 'Dan Abramov',
+        number: '12-43-545678'
     },
     {
         id: 4,
-        name: "Mary Poppendick",
-        number: "39-24-5678899"
+        name: 'Mary Poppendick',
+        number: '39-24-5678899'
     }
 ]
 
@@ -46,7 +46,7 @@ app.get('/info', (req,res) => {
     res.send(
         `<p>Phonebook has info for ${amount} persons</p>
         <p>${date}<p>`
-        )
+    )
 })
 
 app.get('/api/persons', (req, res) => {
